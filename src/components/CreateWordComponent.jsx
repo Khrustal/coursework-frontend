@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Formik, Form, Field } from 'formik';
 import DataService from "../api/DataService";
-import AuthenticationService from './AuthenticationService.js'
+import AuthenticationService from '../api/AuthenticationService.js'
 
 class CreateWordComponent extends Component {
 

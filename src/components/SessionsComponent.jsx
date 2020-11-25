@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import DataService from "../api/DataService";
-import AuthenticationService from './AuthenticationService.js'
+import AuthenticationService from '../api/AuthenticationService.js'
 
 class SessionsComponent extends Component {
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import AuthenticationService from './AuthenticationService.js'
+import AuthenticationService from '../api/AuthenticationService.js'
 import { Formik, Form, Field } from 'formik'
 
 class SignupComponent extends Component{

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import DataService from "../api/DataService";
-import AuthenticationService from './AuthenticationService.js'
+import AuthenticationService from '../api/AuthenticationService.js'
 
 class AddWordsToSessionComponent extends Component {
 
@@ -13,7 +13,6 @@ class AddWordsToSessionComponent extends Component {
         }
         this.refreshWords = this.refreshWords.bind(this)
         this.addWordsClicked = this.addWordsClicked.bind(this);
-        this.handleCheckboxChange = this.handleCheckboxChange(this);
     }
 
     componentDidMount() {
@@ -31,9 +30,7 @@ class AddWordsToSessionComponent extends Component {
     }
 
     addWordsClicked() {
-        console.log(document.getElementsByName("selected"));
         for (let i = 0; i < this.state.words.length; i++) {
-            console.log(document.getElementById(this.state.words[i].id).checked);
             if(document.getElementById(this.state.words[i].id).checked) {
                 let request = {
                     sessionId: this.props.match.params.id,
@@ -42,10 +39,7 @@ class AddWordsToSessionComponent extends Component {
                 DataService.addWordToSession(request)
             }
           }
-    }
-
-    handleCheckboxChange(event) {
-        console.log(event);
+          this.props.history.push(`/sessions/${this.props.match.params.id}`)
     }
 
     render() {
