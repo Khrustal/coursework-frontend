@@ -38,6 +38,11 @@ class AuthenticationService {
         if(user===null) return ''
         return user.username
     }
+    getLoggedUserId() {
+        let user = JSON.parse(sessionStorage.getItem("user"))
+        if(user===null) return ''
+        return user.id
+    }
 }
 
 export default new AuthenticationService()

@@ -3,6 +3,10 @@ import AuthHeader from "./AuthHeader";
 
 class ToDoDataService {
 
+    createWord(word) {
+        return axios.post(`http://localhost:8080/create`, word, { headers: AuthHeader() })
+    }
+
     retrieveAllToDo(name) {
         return axios.get(`http://localhost:8080/users/${name}/todo`, { headers: AuthHeader() })
     }
