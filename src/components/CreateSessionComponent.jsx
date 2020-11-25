@@ -35,7 +35,7 @@ class CreateSessionComponent extends Component {
                                 <Form>
                                     <fieldset className="form-group">
                                         <label>Название</label>
-                                        <Field className="form-control" type="text" name="name"/>
+                                        <Field className="form-control" type="text" name="name"  autoComplete="off"/>
                                     </fieldset>
                                     <button className="btn btn-success" type="submit">Создать</button>
                                 </Form>

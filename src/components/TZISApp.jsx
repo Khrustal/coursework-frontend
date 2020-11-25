@@ -14,7 +14,9 @@ import SessionsComponent from './SessionsComponent'
 import CreateSessionComponent from './CreateSessionComponent'
 import SessionComponent from './SessionComponent'
 import AddWordsToSessionComponent from './AddWordsToSessionComponent'
-import './Basic.css'
+import TestComponent from './TestComponent'
+import ResultsComponent from './ResultsComponent'
+import '../Basic.css'
 
 class TZISApp extends Component {
     render() {
@@ -31,6 +33,8 @@ class TZISApp extends Component {
                         <AuthenticatedRoute path="/words" component={WordsComponent}/>
                         <AuthenticatedRoute path="/sessions/create" component={CreateSessionComponent}/>
                         <AuthenticatedRoute path="/sessions/:id/add" component={AddWordsToSessionComponent}/>
+                        <AuthenticatedRoute path="/sessions/:id/test" component={TestComponent}/>
+                        <AuthenticatedRoute path="/sessions/:id/test/result" component={ResultsComponent}/>
                         <AuthenticatedRoute path="/sessions/:id" component={SessionComponent}/>
                         <AuthenticatedRoute path="/sessions" component={SessionsComponent}/>
                         <AuthenticatedRoute path="/logout" component={LogoutComponent}/>

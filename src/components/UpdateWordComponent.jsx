@@ -52,11 +52,11 @@ class UpdateWordComponent extends Component {
                                 <Form>
                                     <fieldset className="form-group">
                                         <label>Оригинал</label>
-                                        <Field className="form-control" type="text" name="original"/>
+                                        <Field className="form-control" type="text" name="original" autoComplete="off"/>
                                     </fieldset>
                                     <fieldset className="form-group">
                                         <label>Перевод</label>
-                                        <Field className="form-control" type="text" name="translation"/>
+                                        <Field className="form-control" type="text" name="translation" autoComplete="off"/>
                                     </fieldset>
                                     <button className="btn btn-success" type="submit">Изменить</button>
                                 </Form>
