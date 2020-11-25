@@ -31,10 +31,17 @@ class AddWordsToSessionComponent extends Component {
     }
 
     addWordsClicked() {
-        console.log(this.state.words);
-        this.setState({checkboxes: document.getElementsByName("checked")})
-        console.log(document.getElementsByClassName("form-check-input"));
-        console.log(this.state.checkboxes);
+        console.log(document.getElementsByName("selected"));
+        for (let i = 0; i < this.state.words.length; i++) {
+            console.log(document.getElementById(this.state.words[i].id).checked);
+            if(document.getElementById(this.state.words[i].id).checked) {
+                let request = {
+                    sessionId: this.props.match.params.id,
+                    wordId: this.state.words[i].id
+                }
+                DataService.addWordToSession(request)
+            }
+          }
     }
 
     handleCheckboxChange(event) {
@@ -61,7 +68,7 @@ class AddWordsToSessionComponent extends Component {
                                 word =>
                                     <tr key={word.id}>
                                         <td>
-                                            <input type="checkbox" name="selected" className="form-check-input"/>
+                                            <input id={word.id} type="checkbox" name="selected" className="form-check-input"/>
                                         </td>
                                         <td>{word.original}</td>
                                         <td>{word.translation}</td>

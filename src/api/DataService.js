@@ -42,6 +42,10 @@ class DataService {
     deleteSession(id) {
         return axios.delete(`http://localhost:8080/session/delete?id=${id}`, { headers: AuthHeader() })
     }
+
+    addWordToSession(request) {
+        return axios.post(`http://localhost:8080/session/add`, request, { headers: AuthHeader() })
+    }
 }
 
 export default new DataService()
