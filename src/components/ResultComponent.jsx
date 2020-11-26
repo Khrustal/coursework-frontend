@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
 import DataService from "../api/DataService";
+import { ProgressBar } from 'react-bootstrap'
 import SvgIcon from '@material-ui/icons/Check';
 
 class ResultsComponent extends Component {
@@ -31,7 +32,10 @@ class ResultsComponent extends Component {
             console.log(this.state.result.answer)
             return <div>
                 <h1>Результат теста</h1>
-                <p>Процент выполнения: {this.state.result.rightAnswers}</p>
+                <ProgressBar>
+                    <ProgressBar variant="success" now={this.state.result.rightAnswers*100} key={1} label={`${Math.round(this.state.result.rightAnswers*100)}%`}/>
+                    <ProgressBar variant="danger" now={100-this.state.result.rightAnswers*100} key={2} label={`${Math.round(100-this.state.result.rightAnswers*100)}%`}/>
+                </ProgressBar>
                 <div className="container">
                     <table className="table">
                         <thead>
@@ -45,8 +49,13 @@ class ResultsComponent extends Component {
                         {
                             this.state.result.answer.map (
                                 answer =>
-                                <tr key={answer.id} style={answer.correct && {backgroundColor: "LightGreen"} || !answer.correct && {backgroundColor: "red"}}>
-                                    <td>{ answer.correct && <CheckIcon color="inherit"/> || !answer.correct && <ClearIcon/> }</td>
+                                <tr key={answer.id}>
+                                    <td>
+                                        { 
+                                            answer.correct && <CheckIcon style={{ color: "green"}}/> || 
+                                            !answer.correct && <ClearIcon style={{ color: "red" }}/> 
+                                        }
+                                    </td>
                                     <td>
                                         <input className="form-control" name="original" readOnly value={answer.word.original}/>
                                     </td>

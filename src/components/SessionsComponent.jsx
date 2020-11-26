@@ -15,6 +15,7 @@ class SessionsComponent extends Component {
         this.addSessionClicked = this.addSessionClicked.bind(this)
         this.refreshSessions = this.refreshSessions.bind(this)
         this.startTestClicked = this.startTestClicked.bind(this)
+        this.openResultsClicked = this.openResultsClicked.bind(this)
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -54,6 +55,10 @@ class SessionsComponent extends Component {
         this.props.history.push(`/sessions/${id}`)
     }
 
+    openResultsClicked(id) {
+        this.props.history.push(`/sessions/${id}/results`)
+    }
+
     startTestClicked(id) {
         this.props.history.push(`/sessions/${id}/test`)
     }
@@ -70,6 +75,7 @@ class SessionsComponent extends Component {
                                 <th><button className="btn btn-success" onClick={this.addSessionClicked}>+ Добавить</button></th>
                                 <th>Название</th>
                                 <th>Тестирование</th>
+                                <th>Результаты</th>
                                 <th>Открыть</th>
                                 <th>Удалить</th>
                             </tr>
@@ -82,6 +88,7 @@ class SessionsComponent extends Component {
                                         <td></td>
                                         <td>{session.name}</td>
                                         <td><button className="btn btn-primary" onClick={() => this.startTestClicked(session.id)}>Начать тест</button></td>
+                                        <td><button className="btn btn-info" onClick={() => this.openResultsClicked(session.id)}>Результаты</button></td>
                                         <td><button className="btn btn-success" onClick={() => this.openSessionClicked(session.id)}>Открыть</button></td>
                                         <td><button className="btn btn-warning" onClick={() => this.deleteSessionClicked(session.id)}>Удалить</button></td>
                                     </tr>

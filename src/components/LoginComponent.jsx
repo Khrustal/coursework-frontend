@@ -42,6 +42,7 @@ class LoginComponent extends Component {
                 this.props.history.push(`/words`);
                 window.location.reload();
             });
+        this.setState({loginFailed: true})
     }
 
 }
