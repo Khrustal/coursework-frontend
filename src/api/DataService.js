@@ -50,6 +50,18 @@ class DataService {
     retriveShuffledSessionWords(id) {
         return axios.get(`http://localhost:8080/session/get-test?id=${id}`, { headers: AuthHeader() })
     }
+
+    createResult(result) {
+        return axios.post(`http://localhost:8080/session/result/create`, result, { headers: AuthHeader() })
+    }
+
+    retrieveResult(id) {
+        return axios.get(`http://localhost:8080/session/result/get?id=${id}`, { headers: AuthHeader() })
+    }
+
+    retrieveAllResults(id) {
+        return axios.get(`http://localhost:8080/session/result/get-all?id=${id}`, { headers: AuthHeader() })
+    }
 }
 
 export default new DataService()

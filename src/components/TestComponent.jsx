@@ -26,6 +26,15 @@ class TestComponent extends Component {
         let ans = [];
         this.state.words.forEach(elem => 
             ans.push(document.getElementById(elem.id).value))
+        let result = {
+            "sessionId": this.state.sessionId,
+            "words": this.state.words,
+            "answers": ans
+        }
+        DataService.createResult(result)
+            .then(response => 
+                this.props.history.push(`/sessions/${this.state.sessionId}/results/${response.data}`));
+
     }
 
     render() {
