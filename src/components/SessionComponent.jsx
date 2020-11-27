@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import DataService from "../api/DataService";
+import IconButton from '@material-ui/core/Button';
+import AddBoxIcon from '@material-ui/icons/AddBox';
 
 class SessionComponent extends Component {
 
@@ -56,7 +58,7 @@ class SessionComponent extends Component {
                     <table className="table">
                         <thead>
                             <tr>
-                                <th><button className="btn btn-success" onClick={this.addWordClicked}>+ Добавить</button></th>
+                                <th><IconButton onClick={this.addWordClicked}><AddBoxIcon style={{color: "green"}}/></IconButton></th>
                                 <th>Слово</th>
                                 <th>Перевод</th>
                                 <th>Удалить</th>

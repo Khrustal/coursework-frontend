@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
 import DataService from "../api/DataService";
 import AuthenticationService from '../api/AuthenticationService.js'
+import IconButton from '@material-ui/core/Button';
+import AddBoxIcon from '@material-ui/icons/AddBox';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 class WordsComponent extends Component {
 
@@ -62,7 +65,7 @@ class WordsComponent extends Component {
                     <table className="table">
                         <thead>
                             <tr>
-                                <th><button className="btn btn-success" onClick={this.addWordClicked}>+ Добавить</button></th>
+                                <th><IconButton onClick={this.addWordClicked}><AddBoxIcon style={{color: "green"}}/></IconButton></th>
                                 <th>Слово</th>
                                 <th>Перевод</th>
                                 <th>Изменить</th>

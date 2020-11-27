@@ -10,18 +10,18 @@ class SignupComponent extends Component{
     render() {
         return(
             <div className="container">
-                <h1 className="display-4">Registration</h1>
+                <h1 className="display-4">Регистрация</h1>
                 <Formik initialValues={{username: '', password: ''}} onSubmit={this.createClicked}>
                 <Form>
                     <fieldset className="form-group">
-                        <label>Username</label>
+                        <label>Имя пользователя</label>
                         <Field className="form-control" type="text" name="username"/>
                     </fieldset>
                     <fieldset className="form-group">
-                        <label>Password</label>
+                        <label>Пароль</label>
                         <Field className="form-control" type="password" name="password"/>
                     </fieldset>
-                    <button className="btn btn-success" type="submit">Create</button>
+                    <button className="btn btn-success" type="submit">Создать</button>
                 </Form>
                 </Formik>
             </div>

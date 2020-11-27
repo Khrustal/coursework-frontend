@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
 import AuthenticationService from '../api/AuthenticationService.js'
 import { Formik, Form, Field } from 'formik'
+import ClearIcon from '@material-ui/icons/Clear';
 
 class LoginComponent extends Component {
     constructor() {
         super();
         this.state = {
-            loginFailed: false,
-            loginSuccessful: false
+            loginFailed: false
         }
         this.loginClicked = this.loginClicked.bind(this);
     }
@@ -15,8 +15,7 @@ class LoginComponent extends Component {
     render() {
         return(
             <div className="container">
-                {this.state.loginSuccessful && <div>Login successful</div>}
-                {this.state.loginFailed && <div className="alert alert-danger">Login failed</div>}
+                {this.state.loginFailed && <div className="alert alert-danger"><ClearIcon style={{ color: "red" }}/>Неправильное имя пользователя или пароль</div>}
                 <h1 className="display-4">Вход</h1>
                 <Formik initialValues={{username: '', password: ''}} onSubmit={this.loginClicked}>
                 <Form>
@@ -35,14 +34,20 @@ class LoginComponent extends Component {
             </div>
         )
     }
-
+    
     loginClicked(values) {
-        AuthenticationService.login(values.username, values.password).then(
-            () => {
+        AuthenticationService.login(values.username, values.password)
+        .then(() => {
                 this.props.history.push(`/words`);
                 window.location.reload();
-            });
-        this.setState({loginFailed: true})
+        },() => {
+            this.setState({loginFailed: true})
+        });
+        // AuthenticationService.login(values.username, values.password).then(
+        //     () => {
+        //         this.props.history.push(`/words`);
+        //         window.location.reload();
+        //     }).catch(this.setState({loginSuccessful: false}));
     }
 
 }

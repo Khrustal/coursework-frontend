@@ -3,7 +3,6 @@ import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
 import DataService from "../api/DataService";
 import { ProgressBar } from 'react-bootstrap'
-import SvgIcon from '@material-ui/icons/Check';
 
 class ResultsComponent extends Component {
 
