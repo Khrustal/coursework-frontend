@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
 import DataService from "../api/DataService";
-import IconButton from '@material-ui/core/Button';
-import AddBoxIcon from '@material-ui/icons/AddBox';
 import MaterialTable from 'material-table'
 
 import { forwardRef } from 'react';
@@ -64,7 +62,6 @@ class SessionComponent extends Component {
                 }}
                 title = {<span style={{fontFamily: "Victor Mono Heavy", fontSize: 22}}>Слова сессии</span>}
                 columns={[
-                    { title: <IconButton onClick={this.addWordClicked}><AddBoxIcon/></IconButton>, searchable: false, sorting: false},
                     { title: 'Слово', field: 'original', headerStyle: {fontFamily: "Iosevka Semibold", fontSize: 19}},
                     { title: 'Перевод', field: 'translation', headerStyle: {fontFamily: "Iosevka Semibold", fontSize: 19} }
                 ]}
@@ -75,6 +72,12 @@ class SessionComponent extends Component {
                     rowStyle: {fontFamily: "Victor Mono"},
                 }}     
                 actions={[ 
+                    {
+                        icon: Add,
+                        tooltip: 'Добавить слово в сессию',
+                        isFreeAction: true,
+                        onClick: (event) => this.addWordClicked()
+                    },
                     {
                         icon: Delete,
                         tooltip: 'Удалить слово из сессии',

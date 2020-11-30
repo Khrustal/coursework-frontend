@@ -1,6 +1,38 @@
 import React, {Component} from 'react'
 import DataService from "../api/DataService";
+import MaterialTable from 'material-table'
 
+import { forwardRef } from 'react';
+
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import AddBox from '@material-ui/icons/AddBox';
+import ArrowDownward from '@material-ui/icons/ArrowDownward';
+import ChevronLeft from '@material-ui/icons/ChevronLeft';
+import ChevronRight from '@material-ui/icons/ChevronRight';
+import Clear from '@material-ui/icons/Clear';
+import DeleteOutline from '@material-ui/icons/DeleteOutline';
+import Edit from '@material-ui/icons/Edit';
+import FilterList from '@material-ui/icons/FilterList';
+import FirstPage from '@material-ui/icons/FirstPage';
+import LastPage from '@material-ui/icons/LastPage';
+import SaveAlt from '@material-ui/icons/SaveAlt';
+import Search from '@material-ui/icons/Search';
+
+const tableIcons = {
+    Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
+    Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
+    Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
+    Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
+    Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
+    FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
+    LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
+    NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+    PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
+    ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+    Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
+    SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
+  };
+  
 class ResultsComponent extends Component {
 
     constructor(props){
@@ -11,6 +43,7 @@ class ResultsComponent extends Component {
         }
         this.getBody = this.getBody.bind(this)
         this.openResultClicked = this.openResultClicked.bind(this)
+        this.getTable = this.getTable.bind(this)
     }
 
     componentDidMount() {
@@ -27,36 +60,41 @@ class ResultsComponent extends Component {
         this.props.history.push(`/sessions/${this.props.match.params.id}/results/${id}`)
     }
 
+    getTable() {
+        return (
+                <MaterialTable
+                icons={tableIcons}
+                localization={{
+                    header: {
+                        actions: "Действия",
+                    }
+                }}
+                title = {<span style={{fontFamily: "Victor Mono Heavy", fontSize: 22}}>Результаты</span>}
+                columns={[
+                    { title: 'Дата', field: 'date', headerStyle: {fontFamily: "Iosevka Semibold", fontSize: 19}},
+                    { title: 'Время', field: 'time', headerStyle: {fontFamily: "Iosevka Semibold", fontSize: 19}},
+                    { title: 'Процент выполнения', field: 'rightAnswers', headerStyle: {fontFamily: "Iosevka Semibold", fontSize: 19} }
+                ]}
+                data={this.state.results}  
+                options={{
+                    actionsColumnIndex: -1,
+                    headerStyle: {backgroundColor: '#EEE', fontFamily: "Iosevka Semibold", fontSize: 19},
+                    rowStyle: {fontFamily: "Victor Mono"},
+                }}     
+                actions={[ 
+                    {
+                        icon: VisibilityIcon,
+                        tooltip: 'Просмотреть',
+                        onClick: (event, rowData) => this.openResultClicked(rowData.id)
+                    }
+                ]}
+                />
+          )
+    }
+
     getBody() {
         if(this.state.loaded)
-            return <div>
-            <h1>Результаты</h1>
-            <div className="container">
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th>Дата</th>
-                            <th>Время</th>
-                            <th>Выполнено</th>
-                            <th>Открыть</th>
-                        </tr>
-                    </thead>
-                    <tbody>                        
-                    {
-                        this.state.results.map (
-                            result =>
-                            <tr key={result.id}>
-                                <td>{result.date}</td>
-                                <td>{result.time}</td>
-                                <td>{Math.round(result.rightAnswers*100)}%</td>
-                                <td><button className="btn btn-success" onClick={() => this.openResultClicked(result.id)}>Открыть</button></td>
-                            </tr>
-                        )
-                    }
-                    </tbody>
-                </table>                               
-            </div>                
-        </div>
+            return this.getTable()
         else 
                     return <div>Loading...</div>
         

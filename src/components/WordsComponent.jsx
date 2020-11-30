@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import DataService from "../api/DataService";
 import AuthenticationService from '../api/AuthenticationService.js'
-import IconButton from '@material-ui/core/Button';
-import AddBoxIcon from '@material-ui/icons/AddBox';
 import MaterialTable from 'material-table'
 
 import { forwardRef } from 'react';
@@ -84,7 +82,6 @@ class WordsComponent extends Component {
               }}
               title = {<span style={{fontFamily: "Victor Mono Heavy", fontSize: 22}}>Слова</span>}
               columns={[
-                { title: <IconButton onClick={this.addWordClicked}><AddBoxIcon/></IconButton>, searchable: false, sorting: false},
                 { title: 'Слово', field: 'original'},
                 { title: 'Перевод', field: 'translation' },
               ]}
@@ -95,6 +92,12 @@ class WordsComponent extends Component {
                 rowStyle: {fontFamily: "Victor Mono"},
               }}     
               actions={[
+                {
+                    icon: Add,
+                    tooltip: 'Добавить слово',
+                    isFreeAction: true,
+                    onClick: (event) => this.addWordClicked()
+                },
                 {
                   icon: Edit,
                   tooltip: 'Изменить слово',

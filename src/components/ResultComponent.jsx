@@ -32,8 +32,8 @@ class ResultsComponent extends Component {
             return <div>
                 <h1>Результат теста</h1>
                 <ProgressBar>
-                    <ProgressBar variant="success" now={this.state.result.rightAnswers*100} key={1} label={`${Math.round(this.state.result.rightAnswers*100)}%`}/>
-                    <ProgressBar variant="danger" now={100-this.state.result.rightAnswers*100} key={2} label={`${Math.round(100-this.state.result.rightAnswers*100)}%`}/>
+                    <ProgressBar variant="success" now={this.state.result.rightAnswers} key={1} label={`${Math.round(this.state.result.rightAnswers)}%`}/>
+                    <ProgressBar variant="danger" now={100-this.state.result.rightAnswers} key={2} label={`${Math.round(100-this.state.result.rightAnswers)}%`}/>
                 </ProgressBar>
                 <div className="container">
                     <table className="table">
