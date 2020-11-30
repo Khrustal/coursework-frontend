@@ -2,6 +2,42 @@ import React, {Component} from 'react'
 import DataService from "../api/DataService";
 import IconButton from '@material-ui/core/Button';
 import AddBoxIcon from '@material-ui/icons/AddBox';
+import MaterialTable from 'material-table'
+
+import { forwardRef } from 'react';
+
+import AddBox from '@material-ui/icons/AddBox';
+import ArrowDownward from '@material-ui/icons/ArrowDownward';
+import ChevronLeft from '@material-ui/icons/ChevronLeft';
+import ChevronRight from '@material-ui/icons/ChevronRight';
+import Clear from '@material-ui/icons/Clear';
+import DeleteOutline from '@material-ui/icons/DeleteOutline';
+import Edit from '@material-ui/icons/Edit';
+import FilterList from '@material-ui/icons/FilterList';
+import FirstPage from '@material-ui/icons/FirstPage';
+import LastPage from '@material-ui/icons/LastPage';
+import Remove from '@material-ui/icons/Remove';
+import SaveAlt from '@material-ui/icons/SaveAlt';
+import Search from '@material-ui/icons/Search';
+import ViewColumn from '@material-ui/icons/ViewColumn';
+import { Add, Delete } from '@material-ui/icons';
+
+const tableIcons = {
+    Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
+    Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
+    Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
+    Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
+    Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
+    FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
+    LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
+    NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+    PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
+    ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+    Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
+    SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
+    ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
+    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
+  };
 
 class SessionComponent extends Component {
 
@@ -14,6 +50,39 @@ class SessionComponent extends Component {
         this.deleteWordClicked = this.deleteWordClicked.bind(this)   
         this.addWordClicked = this.addWordClicked.bind(this)
         this.refreshWords = this.refreshWords.bind(this)
+        this.getTable = this.getTable.bind(this)
+    }
+
+    getTable() {
+        return (
+                <MaterialTable
+                icons={tableIcons}
+                localization={{
+                    header: {
+                        actions: "Действия",
+                    }
+                }}
+                title = {<span style={{fontFamily: "Victor Mono Heavy", fontSize: 22}}>Слова сессии</span>}
+                columns={[
+                    { title: <IconButton onClick={this.addWordClicked}><AddBoxIcon/></IconButton>, searchable: false, sorting: false},
+                    { title: 'Слово', field: 'original', headerStyle: {fontFamily: "Iosevka Semibold", fontSize: 19}},
+                    { title: 'Перевод', field: 'translation', headerStyle: {fontFamily: "Iosevka Semibold", fontSize: 19} }
+                ]}
+                data={this.state.words}  
+                options={{
+                    actionsColumnIndex: -1,
+                    headerStyle: {backgroundColor: '#EEE', fontFamily: "Iosevka Semibold", fontSize: 19},
+                    rowStyle: {fontFamily: "Victor Mono"},
+                }}     
+                actions={[ 
+                    {
+                        icon: Delete,
+                        tooltip: 'Удалить слово из сессии',
+                        onClick: (event, rowData) =>this.deleteWordClicked(rowData.id)
+                    }
+                ]}
+                />
+          )
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -51,35 +120,7 @@ class SessionComponent extends Component {
 
     render() {
         return (
-            <div>
-                 <h1>Слова сессии</h1>
-                 {this.state.message && <div class="alert alert-success">{this.state.message}</div>}
-                 <div className="container">
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th><IconButton onClick={this.addWordClicked}><AddBoxIcon style={{color: "green"}}/></IconButton></th>
-                                <th>Слово</th>
-                                <th>Перевод</th>
-                                <th>Удалить</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {
-                            this.state.words.map (
-                                word =>
-                                    <tr key={word.id}>
-                                        <td></td>
-                                        <td>{word.original}</td>
-                                        <td>{word.translation}</td>
-                                        <td><button className="btn btn-warning" onClick={() => this.deleteWordClicked(word.id)}>Удалить</button></td>
-                                    </tr>
-                            )
-                            }
-                        </tbody>
-                    </table>
-                 </div>
-            </div>
+            this.getTable()
         )
     }
 }
