@@ -118,51 +118,13 @@ class AddWordsToSessionComponent extends Component {
                     }
                     DataService.addWordToSession(request) 
                 })
-        // for (let i = 0; i < this.state.words.length; i++) {
-        //     if(document.getElementById(this.state.words[i].id).checked) {
-        //         let request = {
-        //             sessionId: this.props.match.params.id,
-        //             wordId: this.state.words[i].id
-        //         }
-        //         DataService.addWordToSession(request)
-        //     }
-        //   }
-          this.props.history.push(`/sessions/${this.props.match.params.id}`)
+        this.props.history.push(`/sessions/${this.props.match.params.id}`)
+        window.location.reload();
     }
 
     render() {
         return (
             this.getTable()
-            // <div>
-            //      <h1>Добавить слова в сессию</h1>
-            //      {this.state.message && <div class="alert alert-success">{this.state.message}</div>}
-            //      <div className="container">
-            //         <table className="table">
-            //             <thead>
-            //                 <tr>
-            //                     <th>Выбрано</th>
-            //                     <th>Слово</th>
-            //                     <th>Перевод</th>
-            //                 </tr>
-            //             </thead>
-            //             <tbody>
-            //             {
-            //                 this.state.words.map (
-            //                     word =>
-            //                         <tr key={word.id}>
-            //                             <td>
-            //                                 <input id={word.id} type="checkbox" name="selected" className="form-check-input"/>
-            //                             </td>
-            //                             <td>{word.original}</td>
-            //                             <td>{word.translation}</td>
-            //                         </tr>
-            //                 )
-            //                 }
-            //             </tbody>
-            //         </table>
-            //         <button className="btn btn-success" onClick={this.addWordsClicked}>+ Добавить</button>
-            //      </div>
-            // </div>
         )
     }
 }

@@ -73,7 +73,8 @@ class ResultsComponent extends Component {
                 columns={[
                     { title: 'Дата', field: 'date', headerStyle: {fontFamily: "Iosevka Semibold", fontSize: 19}},
                     { title: 'Время', field: 'time', headerStyle: {fontFamily: "Iosevka Semibold", fontSize: 19}},
-                    { title: 'Процент выполнения', field: 'rightAnswers', headerStyle: {fontFamily: "Iosevka Semibold", fontSize: 19} }
+                    { title: 'Процент выполнения', field: 'rightAnswers', render: row => <span>{ Math.round(row['rightAnswers'])+"%" }</span>,
+                     headerStyle: {fontFamily: "Iosevka Semibold", fontSize: 19} }
                 ]}
                 data={this.state.results}  
                 options={{
