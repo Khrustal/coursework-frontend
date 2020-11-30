@@ -10,17 +10,28 @@ class CreateWordComponent extends Component {
 
         this.state = {
             original: '',
-            translate: ''
+            translate: '',
+            message: null
         }
 
         this.onSubmit = this.onSubmit.bind(this)
+        this.validate = this.validate.bind(this)
 
     }
 
     componentDidMount() {
     }
 
+    validate(values) {
+        if (!values.original || !values.translation) {
+            this.setState({message: 'Некорректный ввод'}) 
+            return false
+        }
+        return true
+    }
+
     onSubmit(values) {
+        if(this.validate(values)) {
         let userId = AuthenticationService.getCurrentUser().id;
         let word = {
             "original": values.original,
@@ -28,7 +39,10 @@ class CreateWordComponent extends Component {
             "userId": userId
         }
         DataService.createWord(word)
-            .then(() => this.props.history.push(`/words`)) //this magic reloads WordsComponent contents
+            .then(() => this.props.history.push(`/words`),() => {
+                this.setState({message: 'Данное слово уже добавлено'})
+            })
+        }
     }
 
     render() {
@@ -36,6 +50,7 @@ class CreateWordComponent extends Component {
 
         return (
             <div>
+                {this.state.message && <div className="alert alert-danger" style={{fontFamily: "Victor Mono"}}>{this.state.message}</div>}
                 <h1 style={{fontFamily: "Victor Mono Heavy", fontSize: 35}}>Добавление слова</h1>
                 <div className="container">
                     <Formik 

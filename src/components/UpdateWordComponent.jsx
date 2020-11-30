@@ -10,10 +10,12 @@ class UpdateWordComponent extends Component {
 
         this.state = {
             original: '',
-            translate: ''
+            translate: '',
+            message: null
         }
 
         this.onSubmit = this.onSubmit.bind(this)
+        this.validate = this.validate.bind(this)
 
     }
 
@@ -26,7 +28,16 @@ class UpdateWordComponent extends Component {
         })
     }
 
+    validate(values) {
+        if (!values.original || !values.translation) {
+            this.setState({message: 'Некорректный ввод'}) 
+            return false
+        }
+        return true
+    }
+
     onSubmit(values) {
+        if(this.validate(values)) {
         let userId = AuthenticationService.getCurrentUser().id;
         let word = {
             "original": values.original,
@@ -34,12 +45,16 @@ class UpdateWordComponent extends Component {
             "userId": userId
         }
         DataService.updateWord(word)
-            .then(() => this.props.history.push(`/words`))
+            .then(() => this.props.history.push(`/words`),() => {
+                this.setState({message: 'Ошибка'})
+            })
+        }
     }
 
     render() {
         return (
             <div>
+                {this.state.message && <div className="alert alert-danger" style={{fontFamily: "Victor Mono"}}>{this.state.message}</div>}
                 <h1 style={{fontFamily: "Victor Mono Heavy", fontSize: 35}}>Изменение слова</h1>
                 <div className="container">
                     <Formik
@@ -52,11 +67,11 @@ class UpdateWordComponent extends Component {
                                 <Form>
                                     <fieldset className="form-group">
                                         <label style={{fontFamily: "Victor Mono"}}>Оригинал</label>
-                                        <Field className="form-control" type="text" name="original" autoComplete="off"/>
+                                        <Field className="form-control" type="text" name="original" readOnly style={{fontFamily: "Victor Mono"}}/>
                                     </fieldset>
                                     <fieldset className="form-group">
                                         <label style={{fontFamily: "Victor Mono"}}>Перевод</label>
-                                        <Field className="form-control" type="text" name="translation" autoComplete="off"/>
+                                        <Field className="form-control" type="text" name="translation" autoComplete="off" style={{fontFamily: "Victor Mono"}}/>
                                     </fieldset>
                                     <button className="btn btn-success" type="submit" style={{fontFamily: "Victor Mono"}}>Изменить</button>
                                 </Form>

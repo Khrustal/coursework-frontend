@@ -43,11 +43,6 @@ class LoginComponent extends Component {
         },() => {
             this.setState({loginFailed: true})
         });
-        // AuthenticationService.login(values.username, values.password).then(
-        //     () => {
-        //         this.props.history.push(`/words`);
-        //         window.location.reload();
-        //     }).catch(this.setState({loginSuccessful: false}));
     }
 
 }

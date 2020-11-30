@@ -60,7 +60,7 @@ class SessionsComponent extends Component {
     }
 
     getTable() {
-        return (
+        return (        
             <MaterialTable
             icons={tableIcons}
             localization={{
