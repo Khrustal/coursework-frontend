@@ -40,7 +40,7 @@ class UpdateWordComponent extends Component {
     render() {
         return (
             <div>
-                <h1>Изменение слова</h1>
+                <h1 style={{fontFamily: "Victor Mono Heavy", fontSize: 35}}>Изменение слова</h1>
                 <div className="container">
                     <Formik
                         initialValues={{original: this.state.original,translation: this.state.translate}}
@@ -51,14 +51,14 @@ class UpdateWordComponent extends Component {
                             (props) => (
                                 <Form>
                                     <fieldset className="form-group">
-                                        <label>Оригинал</label>
+                                        <label style={{fontFamily: "Victor Mono"}}>Оригинал</label>
                                         <Field className="form-control" type="text" name="original" autoComplete="off"/>
                                     </fieldset>
                                     <fieldset className="form-group">
-                                        <label>Перевод</label>
+                                        <label style={{fontFamily: "Victor Mono"}}>Перевод</label>
                                         <Field className="form-control" type="text" name="translation" autoComplete="off"/>
                                     </fieldset>
-                                    <button className="btn btn-success" type="submit">Изменить</button>
+                                    <button className="btn btn-success" type="submit" style={{fontFamily: "Victor Mono"}}>Изменить</button>
                                 </Form>
                             )
                         }

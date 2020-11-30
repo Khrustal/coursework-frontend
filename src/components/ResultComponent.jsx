@@ -30,18 +30,18 @@ class ResultsComponent extends Component {
         if(this.state.loaded) {
             console.log(this.state.result.answer)
             return <div>
-                <h1>Результат теста</h1>
+                <h1 style={{fontFamily: "Victor Mono Heavy", fontSize: 30}}>Результат теста</h1>
                 <ProgressBar>
-                    <ProgressBar variant="success" now={this.state.result.rightAnswers} key={1} label={`${Math.round(this.state.result.rightAnswers)}%`}/>
-                    <ProgressBar variant="danger" now={100-this.state.result.rightAnswers} key={2} label={`${Math.round(100-this.state.result.rightAnswers)}%`}/>
+                    <ProgressBar variant="success" now={this.state.result.rightAnswers} key={1} label={`${Math.round(this.state.result.rightAnswers)}%`} style={{fontFamily: "Victor Mono Heavy"}}/>
+                    <ProgressBar variant="danger" now={100-this.state.result.rightAnswers} key={2} label={`${Math.round(100-this.state.result.rightAnswers)}%`} style={{fontFamily: "Victor Mono Heavy"}}/>
                 </ProgressBar>
                 <div className="container">
                     <table className="table">
                         <thead>
                             <tr>
-                                <th>Результат</th>
-                                <th>Слово</th>
-                                <th>Перевод</th>
+                                <th style={{fontFamily: "Victor Mono Heavy"}}>Результат</th>
+                                <th style={{fontFamily: "Victor Mono Heavy"}}>Слово</th>
+                                <th style={{fontFamily: "Victor Mono Heavy"}}>Перевод</th>
                             </tr>
                         </thead>
                         <tbody>                        
@@ -56,10 +56,10 @@ class ResultsComponent extends Component {
                                         }
                                     </td>
                                     <td>
-                                        <input className="form-control" name="original" readOnly value={answer.word.original}/>
+                                        <input className="form-control" name="original" readOnly value={answer.word.original} style={{fontFamily: "Victor Mono Heavy"}}/>
                                     </td>
                                     <td>
-                                        <input className="form-control" name="original" readOnly value={answer.answer}/>
+                                        <input className="form-control" name="original" readOnly value={answer.answer} style={{fontFamily: "Victor Mono Heavy"}}/>
                                     </td>
                                 </tr>
                             )

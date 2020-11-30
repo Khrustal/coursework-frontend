@@ -15,13 +15,13 @@ class LoginComponent extends Component {
     render() {
         return(
             <div className="container">
-                {this.state.loginFailed && <div className="alert alert-danger"><ClearIcon style={{ color: "red" }}/>Неправильное имя пользователя или пароль</div>}
-                <h1 className="display-4" style={{fontFamily: "Victor Mono"}}>Вход</h1>
+                {this.state.loginFailed && <div className="alert alert-danger" style={{fontFamily: "Victor Mono"}}>Неправильное имя пользователя или пароль</div>}
+                <h1 className="display-4" style={{fontFamily: "Victor Mono Heavy", fontSize: 50}}>Вход</h1>
                 <Formik initialValues={{username: '', password: ''}} onSubmit={this.loginClicked}>
                 <Form>
                     <fieldset className="form-group">
                         <label style={{fontFamily: "Victor Mono"}}>Логин</label>
-                        <Field className="form-control" type="text" name="username"/>
+                        <Field className="form-control" type="text" name="username" style={{fontFamily: "Victor Mono Heavy"}}/>
                     </fieldset>
                     <fieldset className="form-group">
                         <label style={{fontFamily: "Victor Mono"}}>Пароль</label>

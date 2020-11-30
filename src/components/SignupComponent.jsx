@@ -10,16 +10,16 @@ class SignupComponent extends Component{
     render() {
         return(
             <div className="container">
-                <h1 className="display-4" style={{fontFamily: "Victor Mono"}}>Регистрация</h1>
+                <h1 className="display-4" style={{fontFamily: "Victor Mono Heavy", fontSize: 22}}>Регистрация</h1>
                 <Formik initialValues={{username: '', password: ''}} onSubmit={this.createClicked}>
                 <Form>
                     <fieldset className="form-group">
                         <label style={{fontFamily: "Victor Mono"}}>Имя пользователя</label>
-                        <Field className="form-control" type="text" name="username"/>
+                        <Field className="form-control" type="text" name="username" style={{fontFamily: "Victor Mono Heavy"}}/>
                     </fieldset>
                     <fieldset className="form-group">
                         <label style={{fontFamily: "Victor Mono"}}>Пароль</label>
-                        <Field className="form-control" type="password" name="password"/>
+                        <Field className="form-control" type="password" name="password" />
                     </fieldset>
                     <button className="btn btn-success" type="submit" style={{fontFamily: "Victor Mono"}}>Создать</button>
                 </Form>

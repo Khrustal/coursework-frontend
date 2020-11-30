@@ -24,7 +24,7 @@ class CreateSessionComponent extends Component {
     render() {
         return (
             <div>
-                <h1>Создание сессии</h1>
+                <h1 style={{fontFamily: "Victor Mono Heavy", fontSize: 22}}>Создание сессии</h1>
                 <div className="container">
                     <Formik 
                         initialValues={{name: ''}}
@@ -34,10 +34,10 @@ class CreateSessionComponent extends Component {
                             (props) => (
                                 <Form>
                                     <fieldset className="form-group">
-                                        <label>Название</label>
-                                        <Field className="form-control" type="text" name="name"  autoComplete="off"/>
+                                        <label style={{fontFamily: "Victor Mono"}}>Название</label>
+                                        <Field className="form-control" type="text" name="name"  autoComplete="off" style={{fontFamily: "Victor Mono Heavy"}}/>
                                     </fieldset>
-                                    <button className="btn btn-success" type="submit">Создать</button>
+                                    <button className="btn btn-success" type="submit" style={{fontFamily: "Victor Mono"}}>Создать</button>
                                 </Form>
                             )
                         }

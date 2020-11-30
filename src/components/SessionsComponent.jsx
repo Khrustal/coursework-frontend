@@ -103,7 +103,7 @@ class SessionsComponent extends Component {
                 {
                     icon: Delete,
                     tooltip: 'Удалить сессию',
-                    onClick: (event, rowData) =>this.deleteWordClicked(rowData.id)
+                    onClick: (event, rowData) => this.deleteSessionClicked(rowData.id)
                 }
             ]}
             />

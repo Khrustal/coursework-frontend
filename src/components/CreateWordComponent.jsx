@@ -36,7 +36,7 @@ class CreateWordComponent extends Component {
 
         return (
             <div>
-                <h1>Добавление слова</h1>
+                <h1 style={{fontFamily: "Victor Mono Heavy", fontSize: 35}}>Добавление слова</h1>
                 <div className="container">
                     <Formik 
                         initialValues={{original,translate}}
@@ -46,14 +46,14 @@ class CreateWordComponent extends Component {
                             (props) => (
                                 <Form>
                                     <fieldset className="form-group">
-                                        <label>Оригинал</label>
-                                        <Field className="form-control" type="text" name="original" autoComplete="off"/>
+                                        <label style={{fontFamily: "Victor Mono"}}>Оригинал</label>
+                                        <Field className="form-control" type="text" name="original" autoComplete="off" style={{fontFamily: "Victor Mono Heavy"}}/>
                                     </fieldset>
                                     <fieldset className="form-group">
-                                        <label>Перевод</label>
-                                        <Field className="form-control" type="text" name="translation" autoComplete="off"/>
+                                        <label style={{fontFamily: "Victor Mono"}}>Перевод</label>
+                                        <Field className="form-control" type="text" name="translation" autoComplete="off" style={{fontFamily: "Victor Mono Heavy"}}/>
                                     </fieldset>
-                                    <button className="btn btn-success" type="submit">Добавить</button>
+                                    <button className="btn btn-success" type="submit" style={{fontFamily: "Victor Mono"}}>Добавить</button>
                                 </Form>
                             )
                         }

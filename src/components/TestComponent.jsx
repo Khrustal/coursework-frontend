@@ -40,13 +40,13 @@ class TestComponent extends Component {
     render() {
         return (
             <div>
-                <h1>Тестирование</h1>
+                <h1 style={{fontFamily: "Victor Mono Heavy", fontSize: 22}}>Тестирование</h1>
                 <div className="container">
                     <table className="table">
                         <thead>
                             <tr>
-                                <th>Слово</th>
-                                <th>Перевод</th>
+                                <th style={{fontFamily: "Victor Mono"}}>Слово</th>
+                                <th style={{fontFamily: "Victor Mono"}}>Перевод</th>
                             </tr>
                         </thead>
                         <tbody>                        
@@ -55,17 +55,17 @@ class TestComponent extends Component {
                                 word =>
                                 <tr key={word.id}>
                                     <td>
-                                        <input className="form-control" name="original" readOnly value={word.original}/>
+                                        <input className="form-control" name="original" readOnly value={word.original} style={{fontFamily: "Victor Mono Heavy"}}/>
                                     </td>
                                     <td>
-                                        <input id={word.id}className="form-control" type="text" name="translation" autoComplete="off"/>
+                                        <input id={word.id}className="form-control" type="text" name="translation" autoComplete="off" style={{fontFamily: "Victor Mono Heavy"}}/>
                                     </td>
                                 </tr>
                             )
                         }
                         </tbody>
                     </table>
-                    <button className="btn btn-success" onClick={this.checkButtonClicked}>Проверить</button>                                 
+                    <button className="btn btn-success" onClick={this.checkButtonClicked} style={{fontFamily: "Victor Mono"}}>Проверить</button>                                 
                 </div>                
             </div>
         )
