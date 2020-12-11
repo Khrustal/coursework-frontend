@@ -42,6 +42,7 @@ class ResultsComponent extends Component {
                                 <th style={{fontFamily: "Victor Mono Heavy"}}>Результат</th>
                                 <th style={{fontFamily: "Victor Mono Heavy"}}>Слово</th>
                                 <th style={{fontFamily: "Victor Mono Heavy"}}>Перевод</th>
+                                <th style={{fontFamily: "Victor Mono Heavy"}}>Ожидалось</th>
                             </tr>
                         </thead>
                         <tbody>                        
@@ -56,10 +57,13 @@ class ResultsComponent extends Component {
                                         }
                                     </td>
                                     <td>
-                                        <input className="form-control" name="original" readOnly value={answer.word.original} style={{fontFamily: "Victor Mono Heavy"}}/>
+                                        <input className="form-control" readOnly value={answer.word.original} style={{fontFamily: "Victor Mono Heavy"}}/>
                                     </td>
                                     <td>
-                                        <input className="form-control" name="original" readOnly value={answer.answer} style={{fontFamily: "Victor Mono Heavy"}}/>
+                                        <input className="form-control" readOnly value={answer.answer} style={{fontFamily: "Victor Mono Heavy"}}/>
+                                    </td>
+                                    <td>
+                                        <input className="form-control" readOnly value={answer.word.translation} style={{fontFamily: "Victor Mono Heavy"}}/>
                                     </td>
                                 </tr>
                             )
