@@ -28,7 +28,7 @@ class LoginComponent extends Component {
                         <Field className="form-control" type="password" name="password"/>
                     </fieldset>
                     <button className="btn btn-success" type="submit" style={{fontFamily: "Victor Mono"}}>Войти</button>
-                    <p style={{fontFamily: "Iosevka"}}>Не зарегестрированы? Создайте <a href="/signup">аккаунт</a></p>
+                    <p style={{fontFamily: "Iosevka"}}>Не зарегистрированы? Создайте <a href="/signup">аккаунт</a></p>
                 </Form>
                 </Formik>
             </div>
