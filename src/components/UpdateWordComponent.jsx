@@ -29,7 +29,7 @@ class UpdateWordComponent extends Component {
     }
 
     validate(values) {
-        if (!values.original || !values.translation) {
+        if ((values.original.length == 0) || (values.original.length > 50) || (values.translation.length == 0) || (values.translation.length > 50)) {
             this.setState({message: 'Некорректный ввод'}) 
             return false
         }

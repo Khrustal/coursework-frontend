@@ -16,7 +16,7 @@ class CreateSessionComponent extends Component {
     }
 
     validate(values) {
-        if (!values.name) {
+        if ((values.name.length == 0) || (values.name.length > 20)) {
             this.setState({message: 'Некорректный ввод'}) 
             return false
         }
